@@ -122,7 +122,7 @@ GET https://api.news-explorer-app.ga/articles/
 ```html
 DELETE https://api.news-explorer-app.ga/articles/:articleId
 ```
-параметр cardId - "_id" конкретной статьи
+параметр articleId - "_id" конкретной статьи
 
 Тело ответа, JSON-объект:
 ```json
@@ -145,7 +145,7 @@ DELETE https://api.news-explorer-app.ga/articles/:articleId
 1. **Код:** 404 Неправильный адрес  
 
    **Тело ответа:** `{ error : "Статья с данным Id не найдена" }` или 
- `{ error : "Запрашиваемый ресурс не найден" }`;
+  `{ error : "Запрашиваемый ресурс не найден" }`;
 
 2. **Код:** 401 Ошибка авторизации  
 
