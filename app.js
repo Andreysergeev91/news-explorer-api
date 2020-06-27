@@ -12,17 +12,9 @@ const { errors } = require('celebrate');
 
 const { limiter } = require('./middlewares/rate-limiter');
 
-const { validationForCreateUser, validationForLogin } = require('./routes/request-validation');
-
-const { createUser, login } = require('./controllers/users');
-
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const auth = require('./middlewares/auth');
-
 const mainErrorHandler = require('./middlewares/main-error-handler');
-
-const NotfoundError = require('./middlewares/errors/not-found-error');
 
 require('dotenv').config();
 
@@ -55,15 +47,7 @@ mongoose.connect('mongodb://localhost:27017/news-explorer-db', {
 app.use(requestLogger);
 
 
-app.post('/signup', validationForCreateUser, createUser);
-app.post('/signin', validationForLogin, login);
-
-
-app.use('/', auth, require('./routes/users'));
-app.use('/', auth, require('./routes/articles'));
-
-
-app.all('*', (req, res, next) => next(new NotfoundError('Запрашиваемый ресурс не найден')));
+app.use('/', require('./routes/index'));
 
 app.use(errorLogger);
 
