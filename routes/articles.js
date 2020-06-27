@@ -1,27 +1,16 @@
 const articlesRouter = require('express').Router();
 
-const { celebrate, Joi } = require('celebrate');
-
 const { getUserArticles, createArticle, deleteArticle } = require('../controllers/articles');
 
+const { validationForCreateArticle, validationForDeleteArticle } = require('./request-validation');
 
-articlesRouter.get('/articles', getUserArticles);
-articlesRouter.post('/articles', celebrate({
-  body: Joi.object().keys({
-    keyword: Joi.string().required().min(2).max(30),
-    title: Joi.string().required(),
-    text: Joi.string().required(),
-    date: Joi.string().required(),
-    source: Joi.string().required(),
-    link: Joi.string().required(),
-    image: Joi.string().required(),
-  }),
-}), createArticle);
-articlesRouter.delete('/articles/:articleId', celebrate({
+const auth = require('../middlewares/auth');
 
-  params: Joi.object().keys({
-    articleId: Joi.string().alphanum().length(24),
-  }),
-}), deleteArticle);
+
+articlesRouter.get('/articles', auth, getUserArticles);
+
+articlesRouter.post('/articles', auth, validationForCreateArticle, createArticle);
+
+articlesRouter.delete('/articles/:articleId', auth, validationForDeleteArticle, deleteArticle);
 
 module.exports = articlesRouter;
