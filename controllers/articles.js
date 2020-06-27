@@ -17,7 +17,7 @@ module.exports.deleteArticle = (req, res, next) => {
   if (!(mongoose.Types.ObjectId.isValid(req.params.articleId))) {
     return next(new BadRequestError('Введен некорректный id'));
   }
-  Article.findById(req.params.articleId)
+  Article.findById(req.params.articleId).select('+owner')
     .orFail(new NotfoundError('Статья с данным Id не найдена'))
     .then((article) => {
       if (JSON.stringify(article.owner) !== JSON.stringify(req.user._id)) {
