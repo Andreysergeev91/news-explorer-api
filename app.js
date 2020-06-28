@@ -20,7 +20,7 @@ require('dotenv').config();
 
 
 const {
-  PORT = 3000,
+  PORT = 3000, MONGODB_URI, NODE_ENV,
 } = process.env;
 
 
@@ -37,12 +37,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect('mongodb://localhost:27017/news-explorer-db', {
+mongoose.connect(NODE_ENV === 'production' ? MONGODB_URI : 'mongodb://localhost:27017/news-explorer-db', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
-// eslint-disable-next-line no-console
-}).catch((err) => console.error(err));
+
+});
 
 app.use(requestLogger);
 
