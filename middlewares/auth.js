@@ -4,7 +4,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 const AuthorizationError = require('./errors/authorization-error');
 
-// eslint-disable-next-line consistent-return
+
 module.exports = (req, res, next) => {
   if (!req.cookies.jwt) {
     return next(new AuthorizationError('Необходима авторизация'));
@@ -21,5 +21,5 @@ module.exports = (req, res, next) => {
 
   req.user = payload;
 
-  next();
+  return next();
 };
