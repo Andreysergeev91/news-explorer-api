@@ -4,20 +4,20 @@ const validationForCreateUser = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(8).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+    password: Joi.string().required(),
   }),
 });
 
 const validationForLogin = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(8).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+    password: Joi.string().required(),
   }),
 });
 
 const validationForCreateArticle = celebrate({
   body: Joi.object().keys({
-    keyword: Joi.string().required().min(2).max(30),
+    keyword: Joi.string().required(),
     title: Joi.string().required(),
     text: Joi.string().required(),
     date: Joi.string().required(),
