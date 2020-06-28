@@ -13,8 +13,6 @@ const linkValidator = [
 const articleSchema = new mongoose.Schema({
   keyword: {
     type: String,
-    minlength: 2,
-    maxlength: 30,
     required: true,
   },
   title: {
