@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');
 
+const cors = require('cors');
+
 const cookieParser = require('cookie-parser');
 
 const { errors } = require('celebrate');
@@ -30,6 +32,12 @@ const app = express();
 app.use(limiter);
 
 app.use(helmet());
+
+const corsOptions = {
+  origin: '*',
+};
+
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 
