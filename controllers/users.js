@@ -35,6 +35,7 @@ module.exports.login = (req, res, next) => {
         maxAge: 168 * 3600000,
         httpOnly: true,
         sameSite: 'None',
+        secure: true,
       });
       res.send({ token });
     })
