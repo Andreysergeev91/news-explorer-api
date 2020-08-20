@@ -34,7 +34,7 @@ app.use(limiter);
 app.use(helmet());
 
 const corsOptions = {
-  origin: ['https://andreysergeev91.github.io/news-explorer-frontend/', 'https://andreysergeev91.github.io', 'http://localhost:8080', 'https://news-explorer-app.ga/', 'https://www.news-explorer-app.ga/'],
+  origin: ['https://andreysergeev91.github.io/news-explorer-frontend/', 'https://andreysergeev91.github.io/news-explorer-frontend/#', 'https://andreysergeev91.github.io', 'http://localhost:8080', 'https://news-explorer-app.ga/', 'https://www.news-explorer-app.ga/'],
   credentials: true,
 };
 
